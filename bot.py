@@ -1,5 +1,6 @@
 import discord
 import time
+import os
 
 players = []
 images = []
@@ -12,7 +13,7 @@ other = []
 client = discord.Client()
 
 # 생성된 토큰을 입력해준다.
-token = "NzYxODQxNzg0MzYzMDI0Mzk0.X3gecw.4hkVYNCvHg_wdx9tA724PvEMKJo"
+asses_token = os.environ['BOT_TOKEN']
 
 # 봇이 구동되었을 때 보여지는 코드
 @client.event
@@ -132,6 +133,5 @@ async def on_message(message):
                 players.append(str(message.author))
                 await message.channel.send("올리실 답변의 번호를 입력해 주세요.")
                 await message.channel.send(" > ex) 20201003232953")
-    # if message.content.startswith('!안녕'):
 
-client.run(token)
+client.run(asses_token)
