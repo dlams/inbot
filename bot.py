@@ -5,11 +5,6 @@ import os
 players = []
 images = []
 
-math = []
-phys = []
-eart = []
-other = []
-
 client = discord.Client()
 
 # 생성된 토큰을 입력해준다.
@@ -38,19 +33,18 @@ async def on_message(message):
             if str(message.channel) == "문제-등록":
                 if text == "수학" or text == "물리" or text == "지구과학" or text == "기타":
                     code = text + " #" + str(time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())))
-                    ques_data = int(time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())))
                     if text == "물리":
                         ch_id = 761454137438371891
-                        phys.append(ques_data)
+                        code = code + "_0"
                     if text == "수학":
                         ch_id = 761454054995525672
-                        math.append(ques_data)
+                        code = code + "_1"
                     if text == "지구과학":
                         ch_id = 761454126437236747
-                        eart.append(ques_data)
+                        code = code + "_2"
                     if text == "기타":
                         ch_id = 761955205272961044
-                        other.append(ques_data)
+                        code = code + "_3"
 
                     embed = discord.Embed(title=code, color=0x62c1cc)
                     url = str(images[players.index(str(message.author))])
@@ -81,13 +75,14 @@ async def on_message(message):
                         players.remove(str(message.author))
                 else:
                     next_pass = 1
-                    if int(text) in phys:
+                    spliting = int(str(text)[-1])
+                    if spliting == 0:
                         ch_id = 761454137438371891
-                    elif int(text) in math:
+                    elif spliting == 1:
                         ch_id = 761454054995525672
-                    elif int(text) in eart:
+                    elif spliting == 2:
                         ch_id = 761454126437236747
-                    elif int(text) in other:
+                    elif spliting == 3:
                         ch_id = 761955205272961044
                     else:
                         next_pass = 0
