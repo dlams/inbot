@@ -31,7 +31,7 @@ async def on_message(message):
             text = str(message.content)
             link = str(message.attachments)
             if str(message.channel) == "문제-등록":
-                if text == "수학" or text == "물리" or text == "지구과학" or text == "기타":
+                if text == "수학" or text == "물리" or text == "지구과학" or text == "화학" or text == "기타":
                     code = text + " #" + str(time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())))
                     if text == "물리":
                         ch_id = 761454137438371891
@@ -42,9 +42,12 @@ async def on_message(message):
                     if text == "지구과학":
                         ch_id = 761454126437236747
                         code = code + "_2"
+                    if text == "화학":
+                        ch_id = 763362692974772244
+                        code = code + "_3"
                     if text == "기타":
                         ch_id = 761955205272961044
-                        code = code + "_3"
+                        code = code + "_5"
 
                     embed = discord.Embed(title=code, color=0x62c1cc)
                     url = str(images[players.index(str(message.author))])
@@ -83,6 +86,8 @@ async def on_message(message):
                     elif spliting == 2:
                         ch_id = 761454126437236747
                     elif spliting == 3:
+                        ch_id = 763362692974772244
+                    elif spliting == 5:
                         ch_id = 761955205272961044
                     else:
                         next_pass = 0
@@ -116,7 +121,7 @@ async def on_message(message):
                 images.append(url[0])
                 players.append(str(message.author))
                 await message.channel.send("올리실 과목명을 입력해 주세요.")
-                await message.channel.send(" > 현재 지원하는 과목 : 수학, 물리, 지구과학, 기타")
+                await message.channel.send(" > 현재 지원하는 과목 : 수학, 물리, 지구과학, 화학, 기타")
         if str(message.channel) == "답변-등록":
             if str(message.author) in players:
                 await message.channel.send("이미 등록을 준비하고 있는 문제나 답변이 있습니다. 전 활동을 취소하려면 './취소'를 입력하세요.")
